@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0d0d0d;
+  --foreground: #f4f4f5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-black: #0d0d0d;
+  --color-white: #e6e7e8;
+  --font-sans: Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  border-radius: 0 !important;
+}
+
+body {
+  margin: 0;
+  background: #0d0d0d;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+.mouse-cursor-icon {
+  background-color: #9933ff;
+  animation: mouse-cursor-shift 1200ms ease-in-out infinite alternate;
+  -webkit-mask-image: url("/images/mouse-icon-01.svg");
+  mask-image: url("/images/mouse-icon-01.svg");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+@keyframes mouse-cursor-shift {
+  from {
+    background-color: #9933ff;
+  }
+  to {
+    background-color: #33ffff;
+  }
+}
+
+.animate-enter {
+  animation: enter 600ms ease-out both;
+}
+
+.animate-fade {
+  animation: fade-in 600ms ease-out both;
+}
+
+.delay-1 {
+  animation-delay: 120ms;
+}
+
+.delay-2 {
+  animation-delay: 240ms;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-enter,
+  .animate-fade,
+  .delay-1,
+  .delay-2 {
+    animation: none;
+  }
+}

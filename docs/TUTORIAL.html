@@ -1,0 +1,94 @@
+<h1>anypercent website build log (tutorial)</h1>
+<h2>0) Goal</h2>
+<p>Build a site inspired by makehastecorp style with:</p>
+<ul>
+<li>portfolio-first presentation</li>
+<li>small product sales section</li>
+<li>scalable modern stack</li>
+</ul>
+<hr>
+<h2>1) Stack decision</h2>
+<p><strong>Chosen stack:</strong> Next.js (App Router) + Tailwind CSS + TypeScript</p>
+<h3>Why</h3>
+<ul>
+<li>Great SEO for portfolio discoverability</li>
+<li>Fast and modern UI performance</li>
+<li>Easy to grow from portfolio into product pages/checkout later</li>
+<li>Component-based structure for clean iteration</li>
+</ul>
+<hr>
+<h2>2) Site structure (blueprint)</h2>
+<h3>Core pages (v1)</h3>
+<ol>
+<li><code>/</code> Home (hero + featured work + products + contact)</li>
+<li><code>/work</code> Portfolio index</li>
+<li><code>/work/[slug]</code> Case study pages</li>
+<li><code>/shop</code> Product listing</li>
+<li><code>/about</code> Brand story + capabilities</li>
+<li><code>/contact</code> Contact form and booking CTA</li>
+</ol>
+<h3>Homepage sections</h3>
+<ol>
+<li><strong>Header/Nav</strong>: logo, work/shop/contact</li>
+<li><strong>Hero</strong>: strong positioning line + short value proposition</li>
+<li><strong>Featured Work Grid</strong>: 3 cards (services/case studies)</li>
+<li><strong>Small Products Section</strong>: 3 digital products with price + buy CTA</li>
+<li><strong>Contact Footer CTA</strong>: collaboration email</li>
+</ol>
+<hr>
+<h2>3) Visual style system</h2>
+<h3>Direction (inspired by reference vibe)</h3>
+<ul>
+<li>Dark, high-contrast minimalism</li>
+<li>Tight spacing rhythm</li>
+<li>Lowercase typography accents</li>
+<li>Editorial hierarchy (big hero, compact body)</li>
+<li>Subtle borders/glass cards instead of heavy shadows</li>
+</ul>
+<h3>Tokens (v1)</h3>
+<ul>
+<li><code>bg</code>: <code>#0a0a0a</code></li>
+<li><code>text</code>: <code>#f4f4f5</code></li>
+<li><code>muted</code>: zinc-300/400/500 scale</li>
+<li>radius: <code>xl/2xl</code></li>
+<li>border alpha: <code>white/10</code> and <code>white/15</code></li>
+</ul>
+<h3>Typography</h3>
+<ul>
+<li>System sans stack with Inter-first tone</li>
+<li>Hero: 4xl to 6xl responsive</li>
+<li>Body: 14–16px range for calm readability</li>
+</ul>
+<hr>
+<h2>4) What we implemented right now</h2>
+<h3>Scaffold</h3>
+<pre><code class="language-bash">npx create-next-app@latest anypercent --ts --tailwind --eslint --app --src-dir --import-alias &quot;@/*&quot; --use-npm --yes
+</code></pre>
+<h3>Built homepage in:</h3>
+<ul>
+<li><code>src/app/page.tsx</code></li>
+</ul>
+<h3>Updated base styling in:</h3>
+<ul>
+<li><code>src/app/globals.css</code></li>
+</ul>
+<p>Features now live:</p>
+<ul>
+<li>Brand: <code>anypercent</code></li>
+<li>Portfolio-oriented hero</li>
+<li>Featured work cards</li>
+<li>Product cards with mock pricing and buy buttons</li>
+<li>Contact CTA section</li>
+</ul>
+<hr>
+<h2>5) Next steps (recommended)</h2>
+<ol>
+<li>Add real portfolio case studies (<code>/work/[slug]</code>)</li>
+<li>Connect buy buttons to Stripe Payment Links or Gumroad</li>
+<li>Add subtle motion (fade/slide on scroll)</li>
+<li>Set metadata/OG image/favicon</li>
+<li>Deploy on Vercel</li>
+</ol>
+<hr>
+<h2>6) PDF tracking</h2>
+<p>This tutorial file is the source of truth. We will keep updating it and regenerate PDF snapshots as the project evolves.</p>
