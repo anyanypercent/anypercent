@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
+import { WorkEditorialBoard } from "@/components/work-editorial-board";
+import { WorkRotationPreview } from "@/components/work-rotation-preview";
 import { workItems } from "@/data/site";
 
 export function generateStaticParams() {
@@ -31,9 +33,9 @@ export default async function CaseStudyPage({
           ))}
         </div>
 
-        <article className="flex min-h-[70vh] flex-col items-center justify-center text-center">
+        <article className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden text-center">
           <p className="font-mono text-xs uppercase tracking-[0.28em] text-white">{item.category}</p>
-          <h1 className="mt-5 text-5xl font-semibold uppercase leading-none md:text-7xl">{item.title}</h1>
+          <h1 className="relative z-10 mt-5 text-5xl font-semibold uppercase leading-none md:text-7xl">{item.title}</h1>
 
           <div className="mt-8 border-y-2 border-dashed border-white px-6 py-3">
             <p className="font-mono text-2xl uppercase tracking-[0.08em] md:text-3xl">
@@ -41,20 +43,28 @@ export default async function CaseStudyPage({
             </p>
           </div>
 
-          <p className="mt-8 max-w-3xl text-sm uppercase tracking-[0.06em] md:text-base">{item.summary}</p>
+          <p className="relative z-10 mt-8 max-w-3xl text-sm uppercase tracking-[0.06em] md:text-base">{item.summary}</p>
 
-          <div className="mt-8 max-w-3xl space-y-3 text-xs uppercase tracking-[0.08em] md:text-sm">
+          <div className="relative z-10 mt-8 max-w-3xl space-y-3 text-xs uppercase tracking-[0.08em] md:text-sm">
             <p><span className="font-semibold">Challenge:</span> {item.challenge}</p>
             <p><span className="font-semibold">Solution:</span> {item.solution}</p>
             <p><span className="font-semibold">Outcome:</span> {item.outcome}</p>
           </div>
+
         </article>
+        {currentIndex === 0 ? (
+          <div className="my-[100px] w-full">
+            <WorkRotationPreview />
+          </div>
+        ) : null}
 
         <div className="flex h-8 w-full items-center gap-[9px] overflow-hidden opacity-80">
           {Array.from({ length: 24 }).map((_, i) => (
             <img key={`bottom-${i}`} src="/images/xeno-logo-01-230px.svg" alt="anypercent" className="h-[18px] w-auto" />
           ))}
         </div>
+
+        <WorkEditorialBoard />
 
         <div className="flex items-center justify-between rounded-[3px] bg-[#ff3636] px-3 py-2 text-[8px] uppercase tracking-[0.08em] text-white md:text-[8px]">
           <p className="px-0 text-left">{item.title}</p>
