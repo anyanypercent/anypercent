@@ -16,17 +16,17 @@ const WORDS = [
 ];
 
 const LAYOUT_VARIANTS = [
-  "md:col-span-2 md:row-span-2 md:h-[280px] md:-translate-y-2",
-  "md:col-span-1 md:h-[130px] md:translate-y-8",
+  "md:col-span-2 md:row-span-2 md:h-[280px]",
+  "md:col-span-1 md:h-[130px]",
   "md:col-span-1 md:h-[170px]",
-  "md:col-span-2 md:h-[180px] md:-translate-y-5",
-  "md:col-span-1 md:h-[220px] md:translate-y-4",
+  "md:col-span-2 md:h-[180px]",
+  "md:col-span-1 md:h-[220px]",
   "md:col-span-1 md:h-[145px]",
-  "md:col-span-2 md:h-[210px] md:translate-y-6",
-  "md:col-span-1 md:h-[155px] md:-translate-y-4",
+  "md:col-span-2 md:h-[210px]",
+  "md:col-span-1 md:h-[155px]",
 ];
 
-export function WorkEditorialBoard() {
+export function WorkEditorialBoard({ bgColor = "#0d0d0d" }: { bgColor?: string }) {
   const [active, setActive] = useState<number | null>(null);
   const [pointer, setPointer] = useState({ x: 0.5, y: 0.5 });
 
@@ -40,7 +40,7 @@ export function WorkEditorialBoard() {
 
   return (
     <section
-      className="relative isolate mt-[100px] mb-[100px] overflow-hidden border border-white/35 px-4 py-6 md:px-8 md:py-10"
+      className="relative isolate overflow-hidden px-4 py-6 md:px-8 md:py-10"
       onMouseMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = (event.clientX - rect.left) / rect.width;
@@ -52,7 +52,7 @@ export function WorkEditorialBoard() {
         setActive(null);
       }}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#ff3636_0%,#8a2323_16%,#000000_34%,#000000_66%,#8a2323_84%,#ff3636_100%)] opacity-60" />
+      <div className="pointer-events-none absolute inset-0" style={{ backgroundColor: bgColor }} />
 
       <div className="pointer-events-none absolute inset-0 z-10">
         {WORDS.map((word, i) => {

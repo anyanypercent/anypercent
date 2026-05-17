@@ -17,6 +17,7 @@ export type ProductItem = {
 
 export const navItems = [
   { label: "work", href: "/work" },
+  { label: "gallery", href: "/gallery" },
   { label: "shop", href: "/shop" },
   { label: "about", href: "/about" },
   { label: "contact", href: "/contact" },
@@ -51,6 +52,18 @@ export const workItems: WorkItem[] = [
     outcome: "Bounce rate dropped 21% and project inquiry rate doubled.",
   },
 ];
+
+export const workDetailBgBySlug: Record<string, string> = {
+  "northline-rebrand": "#0d0d0d",
+  "arc-labs-launch": "#ffcc00",
+  "quietframe-site": "#0d0d0d",
+};
+
+export const workDetailInkBySlug: Record<string, "light" | "dark"> = {
+  "northline-rebrand": "light",
+  "arc-labs-launch": "dark",
+  "quietframe-site": "light",
+};
 
 export const products: ProductItem[] = [
   {

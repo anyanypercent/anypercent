@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { workDetailBgBySlug, workDetailInkBySlug } from "@/data/site";
 
 const policyLinks = [
   { label: "Cookie Policy", href: "/pages/cookie-policy" },
@@ -60,6 +62,10 @@ export function SiteFooter() {
   const isShop = pathname?.startsWith("/shop");
   const isWorkDetail = pathname?.startsWith("/work/");
   const isWork = pathname === "/work";
+  const workSlug = isWorkDetail ? pathname?.split("/")[2] : undefined;
+  const workDetailBg = workSlug ? (workDetailBgBySlug[workSlug] ?? "#0d0d0d") : "#0d0d0d";
+  const isWorkDetailDarkInk = workSlug ? (workDetailInkBySlug[workSlug] ?? "light") === "dark" : false;
+  const footerLogoSrc = isShop || isWorkDetailDarkInk ? "/images/ap-logo-xeno-black.svg" : "/images/ap-logo-xeno.svg";
 
   const theme = isShop
     ? {
@@ -71,11 +77,11 @@ export function SiteFooter() {
       }
     : isWorkDetail
       ? {
-          bg: "bg-[#ff3636]",
-          text: "text-[#e6e7e8]",
-          border: "border-[#e6e7e8]/30",
-          muted: "text-[#e6e7e8]/85",
-          dim: "text-[#e6e7e8]/70",
+          bg: "",
+          text: isWorkDetailDarkInk ? "text-black" : "text-[#e6e7e8]",
+          border: isWorkDetailDarkInk ? "border-black/30" : "border-[#e6e7e8]/30",
+          muted: isWorkDetailDarkInk ? "text-black/85" : "text-[#e6e7e8]/85",
+          dim: isWorkDetailDarkInk ? "text-black/70" : "text-[#e6e7e8]/70",
         }
       : isWork
         ? {
@@ -94,31 +100,20 @@ export function SiteFooter() {
           };
 
   return (
-    <footer className={`border-t ${theme.border} ${theme.bg} ${theme.text}`}>
-      <div className="mx-auto w-full px-5 py-10 md:px-[60px] md:py-14">
-        <div className="grid gap-10 md:grid-cols-3">
+    <footer
+      className={`border-t ${theme.border} ${theme.bg} ${theme.text}`}
+      style={isWorkDetail ? { backgroundColor: workDetailBg } : undefined}
+    >
+      <div className="mx-auto w-full px-5 pb-0 pt-10 md:px-[60px] md:pb-0 md:pt-14">
+        <div className="grid gap-10 md:grid-cols-2">
           <section>
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em]">Contact</h2>
-            <ul className="mt-4 space-y-3">
-              <li>
-                <Link
-                  href="/contact"
-                  className={`text-[12px] uppercase tracking-[0.12em] transition-colors hover:opacity-100 ${theme.muted}`}
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em]">Policies</h2>
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.18em]">Policies</h2>
             <ul className="mt-4 space-y-3">
               {policyLinks.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className={`text-[12px] uppercase tracking-[0.12em] transition-colors hover:opacity-100 ${theme.muted}`}
+                    className={`text-[10px] uppercase tracking-[0.12em] transition-colors hover:text-[#ff3636] ${theme.muted}`}
                     target={item.href.startsWith("http") ? "_blank" : undefined}
                     rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   >
@@ -139,7 +134,7 @@ export function SiteFooter() {
                   aria-label={item.label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex h-9 w-9 items-center justify-center border transition-opacity hover:opacity-100 ${theme.border} ${theme.muted}`}
+                  className={`inline-flex h-9 w-9 items-center justify-center border transition-colors hover:text-[#ff3636] ${theme.border} ${theme.muted}`}
                 >
                   <SocialIcon name={item.label} />
                 </a>
@@ -148,7 +143,18 @@ export function SiteFooter() {
           </section>
         </div>
 
-        <div className={`mt-10 flex flex-col gap-3 border-t pt-5 text-[10px] uppercase tracking-[0.14em] md:flex-row md:items-center md:justify-between ${theme.border} ${theme.dim}`}>
+        <div className="mt-[20px] pt-0">
+          <Image
+            src={footerLogoSrc}
+            alt="anypercent"
+            width={2550}
+            height={240}
+            className="h-auto w-full"
+            priority={false}
+          />
+        </div>
+
+        <div className={`mt-0 flex flex-col gap-3 border-t pt-3 text-[10px] uppercase tracking-[0.14em] md:flex-row md:items-center md:justify-between ${theme.border} ${theme.dim}`}>
           <p>© {new Date().getFullYear()} anypercent</p>
           <p>All rights reserved</p>
         </div>

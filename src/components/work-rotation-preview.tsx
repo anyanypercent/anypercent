@@ -63,8 +63,7 @@ export function WorkRotationPreview() {
           <div
             className="relative isolate overflow-hidden border border-white/50 p-8"
             style={{
-              background:
-                "linear-gradient(90deg, #ff3636 0%, #8a2323 14%, #000000 28%, #000000 72%, #8a2323 86%, #ff3636 100%)",
+              background: "#000000",
             }}
           >
             <div

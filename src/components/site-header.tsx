@@ -50,7 +50,7 @@ export function SiteHeader({
           <Link
             key={item.href}
             href={item.href}
-            className={`transition-colors duration-700 ${hoverClass}`}
+            className={`uppercase transition-colors duration-700 ${hoverClass}`}
           >
             {item.label}
           </Link>
